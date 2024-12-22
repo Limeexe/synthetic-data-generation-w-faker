@@ -8,24 +8,27 @@ import numpy as np
 import random
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import PolynomialFeatures
 
+# Set up Faker
+fake = Faker()
+
 # Streamlit App Title
-st.title("Synthetic Data Generator and Model Explorer")
+st.title("Synthetic Data Generator and Model Explorer with Faker")
 st.sidebar.header("Settings")
 
 # Sidebar settings for data generation
-num_samples = st.sidebar.slider("Number of Samples", min_value=100, max_value=1000, value=500, step=50)
+num_samples = st.sidebar.slider("Number of Samples", min_value=100, max_value=2500, value=500, step=50)
 random_state = st.sidebar.slider("Random Seed", min_value=0, max_value=100, value=42)
 
-# Step 1: Data Generation
-@st.cache
+# Data Generation
+@st.cache_data
 def generate_data(num_samples, random_state):
-    fake = Faker()
+    
     np.random.seed(random_state)
     random.seed(random_state)
 
@@ -52,22 +55,24 @@ def generate_data(num_samples, random_state):
 
 data = generate_data(num_samples, random_state)
 
-# Step 2: Data Exploration
+# Data Exploration
 st.subheader("Generated Synthetic Data")
 st.write(data.head())
 
 # Correlation Heatmap
-st.subheader("Correlation Heatmap")
-fig, ax = plt.subplots()
-sns.heatmap(data.corr(), annot=True, cmap='coolwarm', ax=ax)
+st.write("### Correlation Heatmap")
+fig, ax = plt.subplots(figsize=(8, 6))
+numeric_columns = data.select_dtypes(include=[np.number])
+sns.heatmap(numeric_columns.corr(), annot=True, cmap='coolwarm', ax=ax)
 st.pyplot(fig)
+
 
 # Pairplot
 st.subheader("Feature Pairplot")
 sns.pairplot(data.drop(columns=['Feature_4']), hue='Feature_3', palette='viridis')
 st.pyplot(plt)
 
-# Step 3: Modeling
+# Modeling
 st.subheader("Model Training and Evaluation")
 
 # Feature-Target Split
@@ -95,6 +100,13 @@ elif model_type == "Polynomial Regression":
     X_test = poly.transform(X_test)
     model = LinearRegression()
 
+# Cross-Validation
+st.subheader("Cross-Validation Results")
+kfold = KFold(n_splits=5, shuffle=True, random_state=random_state)
+scores = cross_val_score(model, X_train, y_train, cv=kfold, scoring='r2')
+st.write(f"Cross-Validation R-squared Scores: {scores}")
+st.write(f"Mean R-squared Score: {scores.mean():.2f}")
+
 # Train the model
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
@@ -114,6 +126,10 @@ ax.set_xlabel("True Values")
 ax.set_ylabel("Predicted Values")
 ax.set_title(f"True vs Predicted ({model_type})")
 st.pyplot(fig)
+
+# Summary Statistics
+st.write("### Summary Statistics")
+st.write(data.describe())
 
 # Save the data and results
 if st.button("Save Data and Model Results"):
