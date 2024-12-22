@@ -18,13 +18,21 @@ This project is an interactive application built using **Streamlit** to generate
 - Summarizes key statistics of the dataset interactively.
 
 ### 3. Machine Learning Modeling
-- Implements a Random Forest Regression model.
-- Provides users the ability to:
+- Implements Random Forest Regression, Linear Regression, and Polynomial Regression models.
+- Allows users to:
   - Split data into training and testing sets.
+  - Perform cross-validation to evaluate model generalizability.
   - View model evaluation metrics like Mean Squared Error (MSE) and R-squared values.
   - Visualize prediction results with scatter plots.
 
-### 4. Streamlit Integration
+### 4. Cross-Validation
+- Uses **KFold Cross-Validation** to assess the robustness of the selected model.
+- Splits the training data into 5 folds and evaluates the model's R-squared score for each fold.
+- Displays:
+  - R-squared scores for each fold.
+  - Mean R-squared score to summarize overall performance.
+
+### 5. Streamlit Integration
 - Interactive interface for:
   - Adjusting data generation parameters.
   - Viewing and analyzing visualizations.
@@ -69,14 +77,23 @@ streamlit run app.py
    - Show correlation heatmaps to understand dependencies.
    - Summarize dataset statistics interactively.
 
-3. **Modeling**
-   - Train a Random Forest Regression model.
-   - Test the model on synthetic data.
-   - Visualize model predictions.
+3. **Train Machine Learning Models**
+   - Select a machine learning model from:
+     - Random Forest Regressor
+     - Linear Regression
+     - Polynomial Regression
+   - Train the model on the training set and evaluate its performance.
 
-4. **Evaluation**
-   - Display metrics such as MSE and R-squared.
-   - Provide insights into the performance of the regression model.
+4. **Cross-Validation**
+   - Use KFold Cross-Validation (5 folds) to evaluate the selected model.
+   - View R-squared scores for each fold and the mean R-squared score.
+
+5. **Evaluation**
+   - Display metrics such as MSE and R-squared on the test set.
+   - Visualize predictions against true values using scatter plots.
+
+6. **Save Results**
+   - Save the synthetic dataset and model evaluation results for further analysis.
 
 ---
 
@@ -99,6 +116,9 @@ Illustrates the relationships between features and the target variable.
 
 ### Correlation Heatmap
 Displays correlations between features and highlights dependencies.
+
+### Cross-Validation Results
+Shows R-squared scores for each fold and the mean R-squared score to evaluate model performance.
 
 ### Model Predictions
 Scatter plot comparing true vs. predicted values of the target variable.
