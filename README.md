@@ -6,36 +6,36 @@ This program is a comprehensive synthetic data modeling and simulation applicati
 
 The application uses libraries like Faker for data generation, Streamlit for the interface, Seaborn and Matplotlib for visualizations, and Scikit-learn for machine learning tasks. Users can input parameters to customize the data generation process, explore the dataset, build regression models, and visualize model performance.
 
-Features
+# Features
 
-Synthetic Data Generation
+1. Synthetic Data Generation
 
-Generate customizable synthetic datasets using the Faker library.
+- Generate customizable synthetic datasets using the Faker library.
 
-Include features such as numerical values, categorical labels, and date-based variables.
+- Include features such as numerical values, categorical labels, and date-based variables.
 
-Exploratory Data Analysis (EDA)
+2. Exploratory Data Analysis (EDA)
 
-Visualize the dataset using pair plots, histograms, and correlation heatmaps.
+- Visualize the dataset using pair plots, histograms, and correlation heatmaps.
 
-Analyze statistical summaries and relationships between features.
+- Analyze statistical summaries and relationships between features.
 
-Machine Learning Modeling
+3. Machine Learning Modeling
 
-Split the dataset into training and testing subsets.
+- Split the dataset into training and testing subsets.
 
-Train a Random Forest regression model on the synthetic data.
+- Train a Random Forest regression model on the synthetic data.
 
-Evaluate the model using metrics like Mean Squared Error (MSE) and R-squared.
+- Evaluate the model using metrics like Mean Squared Error (MSE) and R-squared.
 
-Simulation and Evaluation
+4. Simulation and Evaluation
 
-Predict outcomes using the trained model.
+- Predict outcomes using the trained model.
 
-Visualize predictions against true values with scatter plots.
+- Visualize predictions against true values with scatter plots.
 
-Interactive Streamlit Interface
+5. Interactive Streamlit Interface
 
-Allow users to select parameters such as the number of samples, features, and target distributions.
+- Allow users to select parameters such as the number of samples, features, and target distributions.
 
-Display dynamic visualizations and evaluation results.
+- Display dynamic visualizations and evaluation results.
