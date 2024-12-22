@@ -1,6 +1,6 @@
 # synthetic-data-generation-w-faker
 
-Overview
+# Overview
 
 This program is a comprehensive synthetic data modeling and simulation application built with Streamlit. It integrates data generation, exploratory data analysis (EDA), machine learning modeling, and evaluation into an interactive user interface, enabling users to create synthetic datasets and analyze them efficiently.
 
