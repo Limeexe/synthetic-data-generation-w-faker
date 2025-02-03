@@ -1,6 +1,6 @@
 # synthetic-data-generation-w-faker
 
-This project is an interactive application built using **Streamlit** to generate synthetic data, perform exploratory data analysis (EDA), train machine learning models, and evaluate the performance of these models. The program allows users to dynamically interact with data generation and modeling processes via an easy-to-use web interface.
+This project is a simple interactive application built using **Streamlit** to generate synthetic data, perform exploratory data analysis (EDA), train machine learning models, and evaluate the performance of these models. The program allows users to dynamically interact with data generation and modeling processes via an easy-to-use web interface as per subject requirement.
 
 ---
 
